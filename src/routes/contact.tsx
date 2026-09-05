@@ -48,6 +48,31 @@ function Contact() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name")?.toString().trim() || "";
+    const mobile = formData.get("mobile")?.toString().trim() || "";
+    const email = formData.get("email")?.toString().trim() || "";
+    const service = formData.get("service")?.toString().trim() || "";
+    const message = formData.get("message")?.toString().trim() || "";
+    
+    if (!name || !mobile) {
+      alert("Please fill in your name and mobile number.");
+      return;
+    }
+
+    let waText = `Hello Manish Gandharva,\nI would like to request a consultation.\n\n*Consultation Request*\n`;
+    waText += `Name: ${name}\n`;
+    waText += `Phone: ${mobile}\n`;
+    if (email) waText += `Email: ${email}\n`;
+    if (service) waText += `Service: ${service}\n`;
+    if (message) waText += `Requirement: ${message}\n\n`;
+    waText += `Please contact me regarding my consultation request.\nThank you.`;
+
+    const encodedMessage = encodeURIComponent(waText);
+    const waLink = `https://wa.me/919829289538?text=${encodedMessage}`;
+    
+    window.open(waLink, "_blank");
     setSubmitted(true);
   };
 
@@ -121,8 +146,8 @@ function Contact() {
               <div className="success-state">
                 <span className="success-icon"><Check /></span>
                 <p className="section-kicker">Thank you</p>
-                <h3>Your enquiry has been received.</h3>
-                <p>We will get back to you shortly to understand your goals and find the right next step for your financial journey.</p>
+                <h3>Your consultation details are ready in WhatsApp.</h3>
+                <p>Please tap Send in WhatsApp to submit your request. We will get back to you shortly to understand your goals and find the right next step for your financial journey.</p>
                 <div style={{ display: "flex", gap: ".75rem", marginTop: ".5rem" }}>
                   <Button onClick={() => setSubmitted(false)} variant="outline">Send another enquiry</Button>
                   <Button asChild className="gold-button">
@@ -130,6 +155,7 @@ function Contact() {
                   </Button>
                 </div>
               </div>
+
             ) : (
               <form className="contact-form" onSubmit={handleSubmit} noValidate>
                 <div className="form-heading">

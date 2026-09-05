@@ -12,6 +12,7 @@ const navLinks = [
   { label: "Services", to: "/services" },
   { label: "Wealth Creation", to: "/services/sip-wealth-creation" },
   { label: "Financial Literacy", to: "/services/financial-literacy" },
+  { label: "Gallery", to: "/gallery" },
   { label: "Contact", to: "/contact" },
 ];
 

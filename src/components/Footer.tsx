@@ -27,6 +27,7 @@ export function Footer() {
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
             <Link to="/services">Services</Link>
+            <Link to="/gallery">Gallery</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/privacy-policy">Privacy Policy</Link>
           </nav>
@@ -66,15 +67,15 @@ export function Footer() {
             </div>
             
             {/* Social Media Links */}
-            <div className="flex gap-4 mt-4">
-              <a href="https://www.instagram.com/financialplanningwithmanishg?igsi=dGJsbzRnNnV2eXN2" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-gold transition-colors" aria-label="Instagram">
-                <Instagram size={20} />
+            <div className="footer-socials">
+              <a href="https://www.instagram.com/financialplanningwithmanishg?igsi=dGJsbzRnNnV2eXN2" target="_blank" rel="noreferrer" className="social-icon instagram" aria-label="Instagram">
+                <Instagram size={18} />
               </a>
-              <a href="https://youtube.com/@financialplanningwithmanishg?si=6vMEAmagflozre86" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-gold transition-colors" aria-label="YouTube">
-                <Youtube size={20} />
+              <a href="https://youtube.com/@financialplanningwithmanishg?si=6vMEAmagflozre86" target="_blank" rel="noreferrer" className="social-icon youtube" aria-label="YouTube">
+                <Youtube size={18} />
               </a>
-              <a href="https://www.facebook.com/share/19Qaif8Vzc/" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-gold transition-colors" aria-label="Facebook">
-                <Facebook size={20} />
+              <a href="https://www.facebook.com/share/19Qaif8Vzc/" target="_blank" rel="noreferrer" className="social-icon facebook" aria-label="Facebook">
+                <Facebook size={18} />
               </a>
             </div>
           </div>

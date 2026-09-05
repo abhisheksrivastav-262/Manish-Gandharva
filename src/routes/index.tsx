@@ -37,6 +37,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import advisorImage from "@/assets/manish-hero.jpg";
+import { ImageLightbox } from "@/components/ImageLightbox";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -262,6 +263,35 @@ function Index() {
         <div className="container event-banner" data-reveal>
           <div className="event-copy"><p className="section-kicker light-kicker">Financial literacy events</p><h2>Make Better<br /><em>Financial Decisions.</em></h2><p>Financial literacy can change the way you save, invest, protect and plan for the future. Knowledge is the foundation of every good financial decision.</p><Button asChild className="light-button"><Link to="/services/financial-literacy">Enquire About Events <ArrowUpRight /></Link></Button></div>
           <div className="event-visual" aria-hidden="true"><div className="event-ring ring-one" /><div className="event-ring ring-two" /><Presentation /><span className="event-stat stat-one">Clarity</span><span className="event-stat stat-two">Confidence</span><span className="event-stat stat-three">Action</span></div>
+        </div>
+      </section>
+
+      {/* SERVICE & CHARGES SECTION */}
+      <section className="section section-light" aria-labelledby="service-charges-heading">
+        <div className="container">
+          <div className="section-heading centered-heading" data-reveal>
+            <p className="section-kicker">Transparent Pricing</p>
+            <h2 id="service-charges-heading">Service &amp; <em>Charges.</em></h2>
+            <p>Explore our services, plans and applicable charges. Click any image to view the complete details.</p>
+          </div>
+          <div data-reveal>
+            <ImageLightbox images={[
+              { src: "/image/a.png",  label: "Service Details" },
+              { src: "/image/a1.png", label: "Service Plans & Charges" },
+              { src: "/image/a2.png", label: "Financial Plan Details" },
+              { src: "/image/a3.png", label: "Insurance & Protection Plans" },
+              { src: "/image/a4.png", label: "Investment Options" },
+              { src: "/image/a5.png", label: "Savings & Wealth Creation" },
+              { src: "/image/a6.png", label: "Retirement & Education Plans" },
+              { src: "/image/a7.png", label: "Loan Services" },
+              { src: "/image/a8.png", label: "Charges & Fee Structure" },
+            ]} />
+          </div>
+          <div className="text-center" style={{ marginTop: "3rem" }} data-reveal>
+            <Button asChild className="gold-button" size="lg">
+              <a href="/gallery">View Full Gallery</a>
+            </Button>
+          </div>
         </div>
       </section>
 
