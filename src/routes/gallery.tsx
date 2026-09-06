@@ -30,6 +30,13 @@ const galleryImages = [
   { src: "/image/a6.png", label: "Retirement & Education Plans" },
   { src: "/image/a7.png", label: "Loan Services" },
   { src: "/image/a8.png", label: "Charges & Fee Structure" },
+  // New images added
+  { src: "/image/b.png",  label: "Service Details – Part B" },
+  { src: "/image/b1.png", label: "Service Plans & Charges – Part B" },
+  { src: "/image/b2.png", label: "Financial Plan Details – Part B" },
+  { src: "/image/b3.png", label: "Insurance & Protection Plans – Part B" },
+  { src: "/image/b4.png", label: "Investment Options – Part B" },
+  { src: "/image/b5.png", label: "Savings & Wealth Creation – Part B" },
 ];
 
 function GalleryPage() {

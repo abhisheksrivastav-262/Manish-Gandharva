@@ -242,7 +242,7 @@ function Index() {
               ['Future', 'Retirement', Landmark],
             ].map(([title, text, Icon]) => {
               const GoalIcon = Icon as LucideIcon;
-              return <div className="timeline-step" key={title as string}><div className="timeline-icon"><GoalIcon /></div><span>{title as string}</span><strong>{text as string}</strong></div>;
+              return <div className="goal-step" key={title as string}><div className="timeline-icon"><GoalIcon /></div><span>{title as string}</span><strong>{text as string}</strong></div>;
             })}
           </div>
         </div>
