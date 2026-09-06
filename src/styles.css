@@ -505,6 +505,7 @@ h1 em, h2 em { color: var(--color-gold-soft); font-style: italic; }
   /* Ensure no truncation */
   display: block !important;
   -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
   overflow: visible !important;
 }
 .service-cta {
