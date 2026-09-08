@@ -4,6 +4,8 @@ import { Clock, TrendingUp, Target, BarChart3, HelpCircle, Phone, MessageCircle 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import sipHero from "@/assets/sip-hero.jpg";
+import { ServiceBenefitsDetail } from "@/components/ServiceBenefitsDetail";
+import { getServiceById } from "@/data/servicesData";
 
 export const Route = createFileRoute("/services/sip-wealth-creation")({
   component: SIPWealthCreation,
@@ -16,7 +18,8 @@ export const Route = createFileRoute("/services/sip-wealth-creation")({
   }),
 });
 
-const WA_MSG = "Hello+Manish+ji%2C+I+would+like+to+discuss+SIP+wealth+creation.";
+const serviceData = getServiceById("sip-wealth-creation")!;
+const WA_MSG = encodeURIComponent(serviceData.whatsappMessage);
 const phone = "9829289538";
 
 const sipReasons = [
@@ -80,7 +83,7 @@ function SIPWealthCreation() {
             <p className="page-hero-sub">SIP can help turn regular investing into a structured long-term wealth creation habit.</p>
             <div className="hero-actions">
               <Button asChild size="lg" className="gold-button">
-                <a href={`https://wa.me/91${phone}?text=${WA_MSG}`} target="_blank" rel="noreferrer">Discuss SIP Wealth Creation</a>
+                <a href={serviceData.whatsappUrl} target="_blank" rel="noreferrer">Book Free Consultation →</a>
               </Button>
               <Button asChild size="lg" variant="outline" className="light-outline">
                 <a href={`https://wa.me/91${phone}?text=${WA_MSG}`} target="_blank" rel="noreferrer"><MessageCircle /> WhatsApp Us</a>
@@ -93,17 +96,24 @@ function SIPWealthCreation() {
         </div>
       </section>
 
+      {/* DEDICATED BENEFITS & FUTURE SECTION */}
+      <section className="section section-light" aria-labelledby="sip-benefits">
+        <div className="container" data-reveal>
+          <ServiceBenefitsDetail service={serviceData} showTitle={false} />
+        </div>
+      </section>
+
       {/* WHAT IS SIP */}
-      <section className="section section-light" aria-labelledby="what-is-sip">
+      <section className="section section-navy" aria-labelledby="what-is-sip">
         <div className="container content-two-col" data-reveal>
           <div>
-            <h2 id="what-is-sip">What Is a <em>SIP?</em></h2>
-            <p>A Systematic Investment Plan allows an investor to invest a predetermined amount at regular intervals into a selected investment product.</p>
-            <p>Rather than requiring a large lump sum upfront, it enables individuals to build their investments gradually over time, aligning with their regular income.</p>
+            <h2 id="what-is-sip" style={{ color: "#fff" }}>What Is a <em>SIP?</em></h2>
+            <p style={{ color: "#ccc" }}>A Systematic Investment Plan allows an investor to invest a predetermined amount at regular intervals into a selected investment product.</p>
+            <p style={{ color: "#ccc" }}>Rather than requiring a large lump sum upfront, it enables individuals to build their investments gradually over time, aligning with their regular income.</p>
           </div>
-          <div className="sip-flow-visual" aria-label="SIP conceptual flow" style={{ padding: "2rem", background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
-            <p style={{ margin: 0, fontWeight: 500, fontSize: "1.2rem", color: "var(--color-foreground)" }}>Please Note:</p>
-            <p style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "var(--color-muted-foreground)", lineHeight: 1.6 }}>We do not make return guarantees. All investments in market-linked instruments are subject to market risks. Read all scheme-related documents carefully before investing.</p>
+          <div className="sip-flow-visual" aria-label="SIP conceptual flow" style={{ padding: "2rem", background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "1rem" }}>
+            <p style={{ margin: 0, fontWeight: 500, fontSize: "1.2rem", color: "#fff" }}>Please Note:</p>
+            <p style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>We do not make return guarantees. All investments in market-linked instruments are subject to market risks. Read all scheme-related documents carefully before investing.</p>
           </div>
         </div>
       </section>
@@ -234,11 +244,12 @@ function SIPWealthCreation() {
       <section className="final-cta" aria-label="Contact options">
         <div className="container final-cta-inner" data-reveal>
           <div>
-            <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>Ready to Start Planning Your Wealth?</h2>
+            <p className="section-kicker light-kicker">Ready to Plan Your Financial Future?</p>
+            <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>Book a Free Consultation with Manish Gandharva</h2>
           </div>
           <div className="final-actions">
             <Button asChild className="gold-button">
-              <a href={`https://wa.me/91${phone}?text=${WA_MSG}`} target="_blank" rel="noreferrer">Discuss SIP Wealth Creation</a>
+              <a href={serviceData.whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle size={18} className="mr-2" /> Book Free Consultation →</a>
             </Button>
             <Button asChild variant="outline" className="light-outline">
               <a href={`tel:${phone}`}><Phone /> Call {phone}</a>

@@ -16,10 +16,14 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ServicesCarLoanRouteImport } from './routes/services/car-loan'
 import { Route as ServicesChildEducationPlanningRouteImport } from './routes/services/child-education-planning'
+import { Route as ServicesEducationLoanRouteImport } from './routes/services/education-loan'
 import { Route as ServicesFinancialLiteracyRouteImport } from './routes/services/financial-literacy'
 import { Route as ServicesHealthInsuranceRouteImport } from './routes/services/health-insurance'
+import { Route as ServicesHomeLoanRouteImport } from './routes/services/home-loan'
 import { Route as ServicesLoansRouteImport } from './routes/services/loans'
+import { Route as ServicesPersonalLoanRouteImport } from './routes/services/personal-loan'
 import { Route as ServicesRetirementPlanningRouteImport } from './routes/services/retirement-planning'
 import { Route as ServicesSipWealthCreationRouteImport } from './routes/services/sip-wealth-creation'
 import { Route as ServicesTermPlanRouteImport } from './routes/services/term-plan'
@@ -59,12 +63,22 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesCarLoanRoute = ServicesCarLoanRouteImport.update({
+  id: '/car-loan',
+  path: '/car-loan',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesChildEducationPlanningRoute =
   ServicesChildEducationPlanningRouteImport.update({
     id: '/child-education-planning',
     path: '/child-education-planning',
     getParentRoute: () => ServicesRoute,
   } as any)
+const ServicesEducationLoanRoute = ServicesEducationLoanRouteImport.update({
+  id: '/education-loan',
+  path: '/education-loan',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesFinancialLiteracyRoute =
   ServicesFinancialLiteracyRouteImport.update({
     id: '/financial-literacy',
@@ -76,9 +90,19 @@ const ServicesHealthInsuranceRoute = ServicesHealthInsuranceRouteImport.update({
   path: '/health-insurance',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesHomeLoanRoute = ServicesHomeLoanRouteImport.update({
+  id: '/home-loan',
+  path: '/home-loan',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesLoansRoute = ServicesLoansRouteImport.update({
   id: '/loans',
   path: '/loans',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesPersonalLoanRoute = ServicesPersonalLoanRouteImport.update({
+  id: '/personal-loan',
+  path: '/personal-loan',
   getParentRoute: () => ServicesRoute,
 } as any)
 const ServicesRetirementPlanningRoute =
@@ -107,10 +131,14 @@ export interface FileRoutesByFullPath {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
+  '/services/car-loan': typeof ServicesCarLoanRoute
   '/services/child-education-planning': typeof ServicesChildEducationPlanningRoute
+  '/services/education-loan': typeof ServicesEducationLoanRoute
   '/services/financial-literacy': typeof ServicesFinancialLiteracyRoute
   '/services/health-insurance': typeof ServicesHealthInsuranceRoute
+  '/services/home-loan': typeof ServicesHomeLoanRoute
   '/services/loans': typeof ServicesLoansRoute
+  '/services/personal-loan': typeof ServicesPersonalLoanRoute
   '/services/retirement-planning': typeof ServicesRetirementPlanningRoute
   '/services/sip-wealth-creation': typeof ServicesSipWealthCreationRoute
   '/services/term-plan': typeof ServicesTermPlanRoute
@@ -123,10 +151,14 @@ export interface FileRoutesByTo {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
+  '/services/car-loan': typeof ServicesCarLoanRoute
   '/services/child-education-planning': typeof ServicesChildEducationPlanningRoute
+  '/services/education-loan': typeof ServicesEducationLoanRoute
   '/services/financial-literacy': typeof ServicesFinancialLiteracyRoute
   '/services/health-insurance': typeof ServicesHealthInsuranceRoute
+  '/services/home-loan': typeof ServicesHomeLoanRoute
   '/services/loans': typeof ServicesLoansRoute
+  '/services/personal-loan': typeof ServicesPersonalLoanRoute
   '/services/retirement-planning': typeof ServicesRetirementPlanningRoute
   '/services/sip-wealth-creation': typeof ServicesSipWealthCreationRoute
   '/services/term-plan': typeof ServicesTermPlanRoute
@@ -140,10 +172,14 @@ export interface FileRoutesById {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
+  '/services/car-loan': typeof ServicesCarLoanRoute
   '/services/child-education-planning': typeof ServicesChildEducationPlanningRoute
+  '/services/education-loan': typeof ServicesEducationLoanRoute
   '/services/financial-literacy': typeof ServicesFinancialLiteracyRoute
   '/services/health-insurance': typeof ServicesHealthInsuranceRoute
+  '/services/home-loan': typeof ServicesHomeLoanRoute
   '/services/loans': typeof ServicesLoansRoute
+  '/services/personal-loan': typeof ServicesPersonalLoanRoute
   '/services/retirement-planning': typeof ServicesRetirementPlanningRoute
   '/services/sip-wealth-creation': typeof ServicesSipWealthCreationRoute
   '/services/term-plan': typeof ServicesTermPlanRoute
@@ -158,10 +194,14 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/reviews'
     | '/services'
+    | '/services/car-loan'
     | '/services/child-education-planning'
+    | '/services/education-loan'
     | '/services/financial-literacy'
     | '/services/health-insurance'
+    | '/services/home-loan'
     | '/services/loans'
+    | '/services/personal-loan'
     | '/services/retirement-planning'
     | '/services/sip-wealth-creation'
     | '/services/term-plan'
@@ -174,10 +214,14 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/reviews'
     | '/services'
+    | '/services/car-loan'
     | '/services/child-education-planning'
+    | '/services/education-loan'
     | '/services/financial-literacy'
     | '/services/health-insurance'
+    | '/services/home-loan'
     | '/services/loans'
+    | '/services/personal-loan'
     | '/services/retirement-planning'
     | '/services/sip-wealth-creation'
     | '/services/term-plan'
@@ -190,10 +234,14 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/reviews'
     | '/services'
+    | '/services/car-loan'
     | '/services/child-education-planning'
+    | '/services/education-loan'
     | '/services/financial-literacy'
     | '/services/health-insurance'
+    | '/services/home-loan'
     | '/services/loans'
+    | '/services/personal-loan'
     | '/services/retirement-planning'
     | '/services/sip-wealth-creation'
     | '/services/term-plan'
@@ -260,11 +308,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/car-loan': {
+      id: '/services/car-loan'
+      path: '/car-loan'
+      fullPath: '/services/car-loan'
+      preLoaderRoute: typeof ServicesCarLoanRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/child-education-planning': {
       id: '/services/child-education-planning'
       path: '/child-education-planning'
       fullPath: '/services/child-education-planning'
       preLoaderRoute: typeof ServicesChildEducationPlanningRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/education-loan': {
+      id: '/services/education-loan'
+      path: '/education-loan'
+      fullPath: '/services/education-loan'
+      preLoaderRoute: typeof ServicesEducationLoanRouteImport
       parentRoute: typeof ServicesRoute
     }
     '/services/financial-literacy': {
@@ -281,11 +343,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesHealthInsuranceRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/home-loan': {
+      id: '/services/home-loan'
+      path: '/home-loan'
+      fullPath: '/services/home-loan'
+      preLoaderRoute: typeof ServicesHomeLoanRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/loans': {
       id: '/services/loans'
       path: '/loans'
       fullPath: '/services/loans'
       preLoaderRoute: typeof ServicesLoansRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/personal-loan': {
+      id: '/services/personal-loan'
+      path: '/personal-loan'
+      fullPath: '/services/personal-loan'
+      preLoaderRoute: typeof ServicesPersonalLoanRouteImport
       parentRoute: typeof ServicesRoute
     }
     '/services/retirement-planning': {
@@ -313,20 +389,28 @@ declare module '@tanstack/react-router' {
 }
 
 interface ServicesRouteChildren {
+  ServicesCarLoanRoute: typeof ServicesCarLoanRoute
   ServicesChildEducationPlanningRoute: typeof ServicesChildEducationPlanningRoute
+  ServicesEducationLoanRoute: typeof ServicesEducationLoanRoute
   ServicesFinancialLiteracyRoute: typeof ServicesFinancialLiteracyRoute
   ServicesHealthInsuranceRoute: typeof ServicesHealthInsuranceRoute
+  ServicesHomeLoanRoute: typeof ServicesHomeLoanRoute
   ServicesLoansRoute: typeof ServicesLoansRoute
+  ServicesPersonalLoanRoute: typeof ServicesPersonalLoanRoute
   ServicesRetirementPlanningRoute: typeof ServicesRetirementPlanningRoute
   ServicesSipWealthCreationRoute: typeof ServicesSipWealthCreationRoute
   ServicesTermPlanRoute: typeof ServicesTermPlanRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesCarLoanRoute: ServicesCarLoanRoute,
   ServicesChildEducationPlanningRoute: ServicesChildEducationPlanningRoute,
+  ServicesEducationLoanRoute: ServicesEducationLoanRoute,
   ServicesFinancialLiteracyRoute: ServicesFinancialLiteracyRoute,
   ServicesHealthInsuranceRoute: ServicesHealthInsuranceRoute,
+  ServicesHomeLoanRoute: ServicesHomeLoanRoute,
   ServicesLoansRoute: ServicesLoansRoute,
+  ServicesPersonalLoanRoute: ServicesPersonalLoanRoute,
   ServicesRetirementPlanningRoute: ServicesRetirementPlanningRoute,
   ServicesSipWealthCreationRoute: ServicesSipWealthCreationRoute,
   ServicesTermPlanRoute: ServicesTermPlanRoute,

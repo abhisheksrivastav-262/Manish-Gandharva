@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PiggyBank, TrendingUp, ShieldCheck, Clock } from "lucide-react";
+import { PiggyBank } from "lucide-react";
 import { useEffect } from "react";
 import { ServiceHero } from "@/components/ServiceHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { ConsultationCTA } from "@/components/ConsultationCTA";
+import { ServiceBenefitsDetail } from "@/components/ServiceBenefitsDetail";
+import { getServiceById } from "@/data/servicesData";
 
 export const Route = createFileRoute("/services/retirement-planning")({
   component: RetirementPlanning,
@@ -18,7 +19,8 @@ export const Route = createFileRoute("/services/retirement-planning")({
   }),
 });
 
-const WA_MSG = "Hello+Manish+ji%2C+I+would+like+to+discuss+Retirement+Planning.";
+const serviceData = getServiceById("retirement-planning")!;
+const WA_MSG = encodeURIComponent(serviceData.whatsappMessage);
 
 const journey = [
   { phase: "Working Years", label: "Building the foundation", detail: "Savings, investments and disciplined habits during your earning years form the foundation of your retirement." },
@@ -45,33 +47,15 @@ function RetirementPlanning() {
         eyebrow="Retirement Planning"
         headline={"Build a Retirement You\nCan Look Forward To."}
         subheadline="Retirement is not the end of earning — it's the beginning of financial independence. The sooner you plan, the more options you have."
-        primaryLabel="Start Retirement Planning"
+        primaryLabel="Book Free Consultation"
         whatsappMessage={WA_MSG}
         Icon={PiggyBank}
       />
 
-      {/* WHY RETIREMENT PLANNING */}
-      <section className="section section-light" aria-labelledby="why-retirement">
-        <div className="container content-two-col" data-reveal>
-          <div>
-            <p className="section-kicker">Why it matters</p>
-            <h2 id="why-retirement">Retirement Planning Is Not<br /><em>Just About Saving.</em></h2>
-            <p>A comfortable retirement requires more than just putting money aside. It involves thinking about your expected lifestyle, the impact of inflation over time, healthcare needs in older age, and how long your savings need to last.</p>
-            <p>The earlier retirement planning begins, the more time your savings have to grow, and the more flexibility you have in choosing your retirement timeline.</p>
-          </div>
-          <div className="points-list">
-            {[
-              { icon: TrendingUp, label: "Inflation awareness", detail: "The purchasing power of money reduces over time. Planning must account for this." },
-              { icon: Clock, label: "Longer lifespans", detail: "With increasing life expectancy, retirement savings may need to last 20–30+ years." },
-              { icon: ShieldCheck, label: "Healthcare in retirement", detail: "Medical costs tend to increase with age. This is a critical factor to plan around." },
-              { icon: PiggyBank, label: "No active income", detail: "In retirement, your savings and investments must fund your lifestyle." },
-            ].map(({ icon: Icon, label, detail }) => (
-              <div key={label} className="risk-card">
-                <Icon />
-                <div><strong>{label}</strong><span>{detail}</span></div>
-              </div>
-            ))}
-          </div>
+      {/* DEDICATED BENEFITS & FUTURE SECTION */}
+      <section className="section section-light" aria-labelledby="retirement-benefits">
+        <div className="container" data-reveal>
+          <ServiceBenefitsDetail service={serviceData} showTitle={false} />
         </div>
       </section>
 
@@ -94,40 +78,7 @@ function RetirementPlanning() {
           </div>
         </div>
       </section>
-
-      {/* WHAT GOOD PLANNING INVOLVES */}
-      <section className="section section-light" aria-labelledby="good-planning">
-        <div className="container">
-          <div className="section-heading centered-heading" data-reveal>
-            <p className="section-kicker">The planning approach</p>
-            <h2 id="good-planning">What Retirement Planning <em>Involves.</em></h2>
-          </div>
-          <div className="points-grid" data-reveal>
-            {[
-              { title: "Define your retirement vision", body: "Think about when you want to retire, what lifestyle you envision, and what that would cost each month." },
-              { title: "Estimate retirement duration", body: "Consider how long your savings may need to support you — this affects how much you need to accumulate." },
-              { title: "Factor in inflation", body: "The real cost of living increases over time. Your retirement plan must account for this reality." },
-              { title: "Consider healthcare costs", body: "Medical expenses often increase significantly in later years. Adequate health coverage is part of retirement planning." },
-              { title: "Build disciplined saving habits", body: "Consistent contributions over your working years are the most reliable way to build a retirement fund." },
-              { title: "Review and adjust over time", body: "Life changes. Income changes. A good retirement plan is reviewed regularly and adjusted as needed." },
-            ].map(({ title, body }) => (
-              <div key={title} className="point-card">
-                <PiggyBank />
-                <div><h3>{title}</h3><p>{body}</p></div>
-              </div>
-            ))}
-          </div>
-          <p className="section-disclaimer" data-reveal>Retirement planning involves long-term projections. Actual outcomes depend on savings discipline, investment performance, and life circumstances. We do not promise specific retirement corpus figures.</p>
-        </div>
-      </section>
-
-      <ConsultationCTA
-        eyebrow="Plan for your future"
-        headline={"Start Your Retirement\nPlanning Conversation."}
-        body="No matter where you are in your career, the best time to start retirement planning is now. Let's talk about your vision and how to work towards it."
-        primaryLabel="Start Retirement Planning"
-        whatsappMessage={WA_MSG}
-      />
     </>
   );
 }
+

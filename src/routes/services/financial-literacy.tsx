@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Presentation, BookOpen, PiggyBank, ShieldCheck, TrendingUp, Users, ArrowUpRight, CheckCircle2, ChevronDown, Check, Building2, Send, Lightbulb, Target } from "lucide-react";
+import { Presentation, BookOpen, PiggyBank, ShieldCheck, TrendingUp, Users, ArrowUpRight, CheckCircle2, ChevronDown, Check, Send, Lightbulb, Target } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import literacyHero from "@/assets/literacy-hero.jpg";
+import { ServiceBenefitsDetail } from "@/components/ServiceBenefitsDetail";
+import { getServiceById } from "@/data/servicesData";
 
 export const Route = createFileRoute("/services/financial-literacy")({
   component: FinancialLiteracy,
@@ -18,7 +20,8 @@ export const Route = createFileRoute("/services/financial-literacy")({
   }),
 });
 
-const WA_MSG = "Hello+Manish+ji%2C+I+would+like+to+enquire+about+Financial+Literacy+Events.";
+const serviceData = getServiceById("financial-literacy")!;
+const WA_MSG = encodeURIComponent(serviceData.whatsappMessage);
 
 const topics = [
   { icon: PiggyBank, label: "Money Management", detail: "Foundational rules of managing cash flow and personal budgeting." },
@@ -84,7 +87,7 @@ function FinancialLiteracy() {
               </p>
               <div className="hero-actions">
                 <Button asChild size="lg" className="gold-button">
-                  <a href="#enquiry-form">Book an Event <ArrowUpRight className="ml-2" size={20} /></a>
+                  <a href={serviceData.whatsappUrl} target="_blank" rel="noreferrer">Book Free Consultation <ArrowUpRight className="ml-2" size={20} /></a>
                 </Button>
               </div>
             </div>
@@ -93,6 +96,13 @@ function FinancialLiteracy() {
               <div className="hero-image-overlay"></div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* DEDICATED BENEFITS & FUTURE SECTION */}
+      <section className="section section-light" aria-labelledby="literacy-benefits">
+        <div className="container" data-reveal>
+          <ServiceBenefitsDetail service={serviceData} showTitle={false} />
         </div>
       </section>
 

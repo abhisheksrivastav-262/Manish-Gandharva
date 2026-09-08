@@ -3,7 +3,8 @@ import { HeartPulse, ShieldCheck, Users, AlertCircle, HelpCircle } from "lucide-
 import { useEffect } from "react";
 import { ServiceHero } from "@/components/ServiceHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { ConsultationCTA } from "@/components/ConsultationCTA";
+import { ServiceBenefitsDetail } from "@/components/ServiceBenefitsDetail";
+import { getServiceById } from "@/data/servicesData";
 
 export const Route = createFileRoute("/services/health-insurance")({
   component: HealthInsurance,
@@ -18,7 +19,8 @@ export const Route = createFileRoute("/services/health-insurance")({
   }),
 });
 
-const WA_MSG = "Hello+Manish+ji%2C+I+would+like+to+discuss+Health+Insurance.";
+const serviceData = getServiceById("health-insurance")!;
+const WA_MSG = encodeURIComponent(serviceData.whatsappMessage);
 
 const faqs = [
   { q: "How do I choose the right sum insured?", a: "The right coverage depends on your family size, age, city of residence, and health profile. A financial advisor can help you evaluate what's appropriate." },
@@ -45,19 +47,26 @@ function HealthInsurance() {
         eyebrow="Health Insurance"
         headline={"Protect Your Health.\nProtect Your Finances."}
         subheadline="A medical emergency can be both physically and financially demanding. Health insurance helps ensure that a health crisis doesn't become a financial crisis."
-        primaryLabel="Discuss Health Insurance"
+        primaryLabel="Book Free Consultation"
         whatsappMessage={WA_MSG}
         Icon={HeartPulse}
       />
 
+      {/* DEDICATED BENEFITS & FUTURE SECTION */}
+      <section className="section section-light" aria-labelledby="health-benefits">
+        <div className="container" data-reveal>
+          <ServiceBenefitsDetail service={serviceData} showTitle={false} />
+        </div>
+      </section>
+
       {/* WHY HEALTH INSURANCE MATTERS */}
-      <section className="section section-light" aria-labelledby="why-health">
+      <section className="section section-navy" aria-labelledby="why-health">
         <div className="container">
-          <div className="section-heading" data-reveal>
-            <p className="section-kicker">The financial reality</p>
+          <div className="section-heading light-heading" data-reveal>
+            <p className="section-kicker light-kicker">The financial reality</p>
             <h2 id="why-health">Why Health Insurance <em>Matters.</em></h2>
           </div>
-          <div className="content-two-col" data-reveal>
+          <div className="content-two-col" data-reveal style={{ color: "#fff" }}>
             <div>
               <p>Medical costs in India have been rising steadily. A single hospitalisation for a serious illness or surgery can run into significant expenses — enough to disrupt years of savings. Health insurance is one of the most important layers of financial protection for any individual or family.</p>
               <p>Without adequate health coverage, families often resort to withdrawing from savings, liquidating investments, or taking on debt to manage medical expenses. Health insurance helps avoid this scenario.</p>
@@ -85,10 +94,10 @@ function HealthInsurance() {
       </section>
 
       {/* HOW TO THINK ABOUT COVERAGE */}
-      <section className="section section-navy" aria-labelledby="coverage-thinking">
+      <section className="section section-light" aria-labelledby="coverage-thinking">
         <div className="container">
-          <div className="section-heading centered-heading light-heading" data-reveal>
-            <p className="section-kicker light-kicker">Making the right choice</p>
+          <div className="section-heading centered-heading" data-reveal>
+            <p className="section-kicker">Making the right choice</p>
             <h2 id="coverage-thinking">How to Think About <em>Health Coverage.</em></h2>
           </div>
           <div className="points-grid" data-reveal>
@@ -106,26 +115,6 @@ function HealthInsurance() {
                   <h3>{title}</h3>
                   <p>{body}</p>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAMILY PROTECTION */}
-      <section className="section section-light" aria-labelledby="family-protection">
-        <div className="container content-two-col" data-reveal>
-          <div>
-            <p className="section-kicker">Family considerations</p>
-            <h2 id="family-protection">Protecting Your <em>Entire Family.</em></h2>
-            <p>For families, health insurance decisions are more complex — you need to think about coverage for children, ageing parents, and your spouse, each potentially with different health needs.</p>
-            <p>Understanding how to structure family health coverage, including whether individual or floater plans work better for your situation, is an important decision worth discussing with a financial professional.</p>
-          </div>
-          <div className="who-grid">
-            {["Children", "Spouse", "Parents", "Yourself", "Extended family"].map((item) => (
-              <div key={item} className="who-card">
-                <Users />
-                <span>{item}</span>
               </div>
             ))}
           </div>
@@ -152,14 +141,7 @@ function HealthInsurance() {
           </div>
         </div>
       </section>
-
-      <ConsultationCTA
-        eyebrow="Take the next step"
-        headline={"Discuss Health Insurance\nWith an Expert."}
-        body="Let's talk about your family's health coverage needs and find a plan that gives you the right protection."
-        primaryLabel="Discuss Health Insurance"
-        whatsappMessage={WA_MSG}
-      />
     </>
   );
 }
+

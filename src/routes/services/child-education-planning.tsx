@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { GraduationCap, BookOpen, Target, Star } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 import { useEffect } from "react";
 import { ServiceHero } from "@/components/ServiceHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { ConsultationCTA } from "@/components/ConsultationCTA";
+import { ServiceBenefitsDetail } from "@/components/ServiceBenefitsDetail";
+import { getServiceById } from "@/data/servicesData";
 
 export const Route = createFileRoute("/services/child-education-planning")({
   component: ChildEducation,
@@ -18,7 +19,8 @@ export const Route = createFileRoute("/services/child-education-planning")({
   }),
 });
 
-const WA_MSG = "Hello+Manish+ji%2C+I+would+like+to+discuss+Child+Education+Planning.";
+const serviceData = getServiceById("child-education-planning")!;
+const WA_MSG = encodeURIComponent(serviceData.whatsappMessage);
 
 const timeline = [
   { stage: "Early Years", label: "Foundation", detail: "Early savings and investment habits established for the long education journey ahead." },
@@ -46,33 +48,15 @@ function ChildEducation() {
         eyebrow="Child Education Planning"
         headline={"Plan Today for Your\nChild's Tomorrow."}
         subheadline="Education is one of the most important gifts you can give your child. Planning ahead ensures that when the time comes, finances are not a barrier to their ambitions."
-        primaryLabel="Plan Child Education"
+        primaryLabel="Book Free Consultation"
         whatsappMessage={WA_MSG}
         Icon={GraduationCap}
       />
 
-      {/* WHY PLAN */}
-      <section className="section section-light" aria-labelledby="why-edu">
-        <div className="container content-two-col" data-reveal>
-          <div>
-            <p className="section-kicker">Why plan early</p>
-            <h2 id="why-edu">The Cost of Education Is <em>Rising Every Year.</em></h2>
-            <p>Education costs — from school fees to professional college tuition — have been increasing steadily. What seems affordable today may look very different in 10 or 15 years. Starting early gives you the most time to prepare, and keeps the monthly requirement manageable.</p>
-            <p>Goal-based education planning helps you put a number to your child's future education milestones and work backwards to what you need to do today to be ready for them.</p>
-          </div>
-          <div className="points-list">
-            {[
-              { icon: BookOpen, label: "Schooling", detail: "Annual school fees, books, extracurricular activities and related costs" },
-              { icon: GraduationCap, label: "Undergraduate education", detail: "3–5 year professional or general degree programmes" },
-              { icon: Star, label: "Postgraduate / specialisation", detail: "MBA, medical, law, engineering and other professional programmes" },
-              { icon: Target, label: "Overseas education", detail: "International universities require substantial financial preparation" },
-            ].map(({ icon: Icon, label, detail }) => (
-              <div key={label} className="risk-card">
-                <Icon />
-                <div><strong>{label}</strong><span>{detail}</span></div>
-              </div>
-            ))}
-          </div>
+      {/* DEDICATED BENEFITS & FUTURE SECTION */}
+      <section className="section section-light" aria-labelledby="edu-benefits">
+        <div className="container" data-reveal>
+          <ServiceBenefitsDetail service={serviceData} showTitle={false} />
         </div>
       </section>
 
@@ -96,40 +80,7 @@ function ChildEducation() {
           </div>
         </div>
       </section>
-
-      {/* HOW PLANNING HELPS */}
-      <section className="section section-light" aria-labelledby="how-planning">
-        <div className="container">
-          <div className="section-heading centered-heading" data-reveal>
-            <p className="section-kicker">Goal-based approach</p>
-            <h2 id="how-planning">How Goal-Based Planning <em>Helps.</em></h2>
-          </div>
-          <div className="points-grid" data-reveal>
-            {[
-              { title: "Define the goal", body: "Identify which education milestones matter most — school, college, postgraduate, overseas." },
-              { title: "Estimate future costs", body: "Accounting for inflation in education costs helps you arrive at a realistic target amount." },
-              { title: "Start early", body: "Beginning sooner means smaller monthly contributions to reach the same goal." },
-              { title: "Choose the right approach", body: "Various financial instruments can be considered depending on your timeline and risk comfort." },
-              { title: "Stay consistent", body: "Discipline over the years is what turns small contributions into meaningful education funds." },
-              { title: "Review periodically", body: "Goals and financial situations change. Regular reviews keep your plan on track." },
-            ].map(({ title, body }) => (
-              <div key={title} className="point-card">
-                <GraduationCap />
-                <div><h3>{title}</h3><p>{body}</p></div>
-              </div>
-            ))}
-          </div>
-          <p className="section-disclaimer" data-reveal>Investment outcomes depend on the instruments chosen, market conditions, and the discipline of contributions over time. Returns are not guaranteed.</p>
-        </div>
-      </section>
-
-      <ConsultationCTA
-        eyebrow="Invest in your child's future"
-        headline={"Plan Your Child's\nEducation Today."}
-        body="Let's talk about your child's education goals and create a planning approach suited to your timeline and financial situation."
-        primaryLabel="Plan Child Education"
-        whatsappMessage={WA_MSG}
-      />
     </>
   );
 }
+

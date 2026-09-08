@@ -1,4 +1,4 @@
-import { ArrowUpRight, MessageCircle, Phone, type LucideIcon } from "lucide-react";
+import { MessageCircle, Phone, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ServiceHeroProps {
@@ -34,8 +34,8 @@ export function ServiceHero({
           {subheadline && <p className="page-hero-sub">{subheadline}</p>}
           <div className="hero-actions">
             <Button asChild size="lg" className="gold-button">
-              <a href="/contact">
-                {primaryLabel} <ArrowUpRight />
+              <a href={waUrl} target="_blank" rel="noreferrer">
+                {primaryLabel} &rarr;
               </a>
             </Button>
             <Button asChild variant="outline" size="lg" className="light-outline">

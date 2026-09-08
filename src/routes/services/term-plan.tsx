@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ShieldCheck, Users, Heart, HelpCircle } from "lucide-react";
+import { ShieldCheck, HelpCircle } from "lucide-react";
 import { useEffect } from "react";
 import { ServiceHero } from "@/components/ServiceHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { ConsultationCTA } from "@/components/ConsultationCTA";
+import { ServiceBenefitsDetail } from "@/components/ServiceBenefitsDetail";
+import { getServiceById } from "@/data/servicesData";
 
 export const Route = createFileRoute("/services/term-plan")({
   component: TermPlan,
@@ -18,7 +19,8 @@ export const Route = createFileRoute("/services/term-plan")({
   }),
 });
 
-const WA_MSG = "Hello+Manish+ji%2C+I+would+like+to+discuss+Term+Plan+options.";
+const serviceData = getServiceById("term-plan")!;
+const WA_MSG = encodeURIComponent(serviceData.whatsappMessage);
 
 const faqs = [
   { q: "What is a term insurance plan?", a: "A term plan provides life cover for a specified period. If the insured person passes away during the policy term, a death benefit is paid to the nominated beneficiary." },
@@ -45,37 +47,15 @@ function TermPlan() {
         eyebrow="Term Plan"
         headline={"Protect the Financial Future\nof Your Family."}
         subheadline="Life is unpredictable. A term insurance plan ensures your family's financial goals and responsibilities are protected, even in your absence."
-        primaryLabel="Discuss Term Plan"
+        primaryLabel="Book Free Consultation"
         whatsappMessage={WA_MSG}
         Icon={ShieldCheck}
       />
 
-      {/* WHY TERM PLAN */}
-      <section className="section section-light" aria-labelledby="why-term">
-        <div className="container">
-          <div className="section-heading" data-reveal>
-            <p className="section-kicker">Financial security</p>
-            <h2 id="why-term">Why Life Cover Is a <em>Critical Decision.</em></h2>
-          </div>
-          <div className="content-two-col" data-reveal>
-            <div>
-              <p>For most families, one or both earners are responsible for EMIs, children's education, household expenses, and long-term financial goals. If an earning member is no longer able to provide, those financial commitments don't disappear.</p>
-              <p>A term plan acts as an income replacement mechanism — giving your family a financial cushion to continue meeting life's obligations without being under sudden financial pressure.</p>
-            </div>
-            <div className="points-list">
-              {[
-                { icon: Heart, label: "Income protection", detail: "Replace your income to support your family's daily needs" },
-                { icon: ShieldCheck, label: "Loan repayment", detail: "Outstanding home loans, EMIs and other liabilities are covered" },
-                { icon: Users, label: "Child's future", detail: "Education and life goals of your children remain protected" },
-                { icon: ShieldCheck, label: "Spouse's security", detail: "Your spouse can continue with financial stability" },
-              ].map(({ icon: Icon, label, detail }) => (
-                <div key={label} className="risk-card">
-                  <Icon />
-                  <div><strong>{label}</strong><span>{detail}</span></div>
-                </div>
-              ))}
-            </div>
-          </div>
+      {/* DEDICATED BENEFITS & FUTURE SECTION */}
+      <section className="section section-light" aria-labelledby="term-benefits">
+        <div className="container" data-reveal>
+          <ServiceBenefitsDetail service={serviceData} showTitle={false} />
         </div>
       </section>
 
@@ -105,10 +85,10 @@ function TermPlan() {
       </section>
 
       {/* FAQ */}
-      <section className="section section-light" aria-labelledby="term-faq">
+      <section className="section section-ink" aria-labelledby="term-faq">
         <div className="container faq-section" data-reveal>
-          <div className="section-heading centered-heading">
-            <p className="section-kicker">Common questions</p>
+          <div className="section-heading centered-heading light-heading">
+            <p className="section-kicker light-kicker">Common questions</p>
             <h2 id="term-faq">Frequently Asked <em>Questions.</em></h2>
           </div>
           <div className="faq-grid">
@@ -121,14 +101,7 @@ function TermPlan() {
           </div>
         </div>
       </section>
-
-      <ConsultationCTA
-        eyebrow="Protect your family"
-        headline={"Discuss Term Plan\nWith an Expert."}
-        body="Let's talk about your financial responsibilities and find the right term coverage for your family."
-        primaryLabel="Discuss Term Plan"
-        whatsappMessage={WA_MSG}
-      />
     </>
   );
 }
+
