@@ -38,6 +38,7 @@ import {
 import { Button } from "@/components/ui/button";
 import advisorImage from "@/assets/manish-hero.jpg";
 import { ImageLightbox } from "@/components/ImageLightbox";
+import { GoogleReviewsSection } from "@/components/GoogleReviewsSection";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -294,6 +295,9 @@ function Index() {
           </div>
         </div>
       </section>
+
+      {/* GOOGLE REVIEWS PREVIEW */}
+      <GoogleReviewsSection limit={6} isHomepagePreview={true} />
 
       {/* FINAL CTA */}
       <section className="final-cta" aria-label="Book a consultation">

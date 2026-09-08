@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ServicesChildEducationPlanningRouteImport } from './routes/services/child-education-planning'
 import { Route as ServicesFinancialLiteracyRouteImport } from './routes/services/financial-literacy'
@@ -46,6 +47,11 @@ const GalleryRoute = GalleryRouteImport.update({
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   id: '/privacy-policy',
   path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/child-education-planning': typeof ServicesChildEducationPlanningRoute
   '/services/financial-literacy': typeof ServicesFinancialLiteracyRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/child-education-planning': typeof ServicesChildEducationPlanningRoute
   '/services/financial-literacy': typeof ServicesFinancialLiteracyRoute
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/child-education-planning': typeof ServicesChildEducationPlanningRoute
   '/services/financial-literacy': typeof ServicesFinancialLiteracyRoute
@@ -147,6 +156,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/privacy-policy'
+    | '/reviews'
     | '/services'
     | '/services/child-education-planning'
     | '/services/financial-literacy'
@@ -162,6 +172,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/privacy-policy'
+    | '/reviews'
     | '/services'
     | '/services/child-education-planning'
     | '/services/financial-literacy'
@@ -177,6 +188,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/privacy-policy'
+    | '/reviews'
     | '/services'
     | '/services/child-education-planning'
     | '/services/financial-literacy'
@@ -193,6 +205,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  ReviewsRoute: typeof ReviewsRoute
   ServicesRoute: typeof ServicesRouteWithChildren
 }
 
@@ -231,6 +244,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy-policy'
       fullPath: '/privacy-policy'
       preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -322,6 +342,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  ReviewsRoute: ReviewsRoute,
   ServicesRoute: ServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport

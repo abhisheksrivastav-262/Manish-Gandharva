@@ -27,6 +27,7 @@ export function Footer() {
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
             <Link to="/services">Services</Link>
+            <Link to="/reviews">Google Reviews</Link>
             <Link to="/gallery">Gallery</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/privacy-policy">Privacy Policy</Link>
