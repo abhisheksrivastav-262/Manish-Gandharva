@@ -11,7 +11,7 @@ export function Footer() {
         {/* Column 1 — Brand */}
         <div>
           <Link to="/" className="brand-mark footer-brand" aria-label="Manish Gandharva home">
-            <span className="brand-monogram">MG</span>
+            <img src="/logo.png" alt="Manish Gandharva Logo" className="brand-logo" style={{ height: '60px', width: 'auto', objectFit: 'contain', borderRadius: '4px' }} />
             <span className="brand-copy">
               <strong>Manish Gandharva</strong>
               <small>Financial Expert &amp; Wealth Security Planner</small>

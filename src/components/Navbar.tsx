@@ -39,7 +39,7 @@ export function Navbar() {
     <header className={`site-nav ${scrolled ? "is-scrolled" : ""}`}>
       <div className="container nav-inner">
         <Link to="/" className="brand-mark" onClick={closeMenu} aria-label="Manish Gandharva home">
-          <span className="brand-monogram">MG</span>
+          <img src="/logo.png" alt="Manish Gandharva Logo" className="brand-logo" style={{ height: '60px', width: 'auto', objectFit: 'contain', borderRadius: '4px' }} />
           <span className="brand-copy">
             <strong>Manish Gandharva</strong>
             <small>Financial Expert &amp; Wealth Security Planner</small>
