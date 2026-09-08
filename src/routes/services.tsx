@@ -128,13 +128,13 @@ function Services() {
             <h2>How Can We <em>Help You?</em></h2>
           </div>
           <div className="service-grid service-grid-full" data-reveal>
-            {servicesList.map(({ icon: Icon, name, desc, to }) => (
-              <Link key={name} to={to} className="service-card">
+            {servicesList.map(({ icon: Icon, name, desc }) => (
+              <Link key={name} to="/contact" className="service-card">
                 <div className="service-icon"><Icon /></div>
                 <h3 className="service-card-h">{name}</h3>
                 <p>{desc}</p>
                 <div className="service-cta">
-                  Explore Service <ArrowUpRight />
+                  Book Now <ArrowUpRight />
                 </div>
               </Link>
             ))}

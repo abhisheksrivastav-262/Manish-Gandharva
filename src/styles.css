@@ -1781,3 +1781,40 @@ h1 {
   from { transform: scale(0.95); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
+
+/* ==========================================================================
+   OUR APPROACH / HOW WE HELP - TEXT VISIBILITY FIX
+   ========================================================================== */
+.section-navy .section-heading h2,
+.section-navy .section-heading h2 em,
+#how-we-help,
+#how-we-help em {
+  color: #FFFFFF !important;
+}
+
+.section-navy .section-heading .section-kicker,
+.section-navy .light-kicker {
+  color: #F59E0B !important;
+}
+
+.section-navy .process-label,
+.process-step .process-label {
+  color: #FFFFFF !important;
+  font-weight: 600;
+}
+
+.section-navy .process-desc,
+.process-step .process-desc {
+  color: #E2E8F0 !important;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.section-navy .process-icon-ring {
+  border-color: #F59E0B !important;
+  background: rgba(15, 23, 42, 0.6) !important;
+}
+
+.section-navy .process-icon-ring svg {
+  color: #F59E0B !important;
+}
