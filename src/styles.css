@@ -1818,3 +1818,67 @@ h1 {
 .section-navy .process-icon-ring svg {
   color: #F59E0B !important;
 }
+
+/* ==========================================================================
+   FOOTER BRANDING & LOGO + BUSINESS NAME FIX
+   ========================================================================== */
+.footer-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.85rem !important;
+  text-decoration: none !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.footer-brand .brand-logo {
+  height: 56px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  border-radius: 4px !important;
+  flex-shrink: 0 !important;
+}
+
+.footer-brand-copy {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.2rem !important;
+}
+
+.footer-brand-title {
+  color: #FFFFFF !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.2 !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+.footer-brand-subtitle {
+  color: #D1D5DB !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
+  line-height: 1.35 !important;
+  text-transform: uppercase !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+/* Mobile responsive fix for Footer brand mark */
+@media (max-width: 640px) {
+  .footer-brand {
+    gap: 0.75rem !important;
+  }
+  .footer-brand .brand-logo {
+    height: 48px !important;
+  }
+  .footer-brand-title {
+    font-size: 1.05rem !important;
+    display: block !important;
+  }
+  .footer-brand-subtitle {
+    font-size: 0.68rem !important;
+    display: block !important;
+  }
+}
